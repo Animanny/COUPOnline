@@ -1,0 +1,61 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-3 col-centered">
+            <center>
+                <h1>Coins: <span id="coins"></span></h1>
+                <button id="income">Take Income</button>
+                <button id="foreignaid" style="margin-top:25px;">Take Foreign Aid</button>
+            </center>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBiMq3BY7fT6TZIXGIGQyyqDF6oWdmvdJQ",
+            authDomain: "coup-online.firebaseapp.com",
+            databaseURL: "https://coup-online.firebaseio.com",
+            projectId: "coup-online",
+            storageBucket: "",
+            messagingSenderId: "90788511190"
+        };
+
+        firebase.initializeApp(config);
+        var database = firebase.database();
+
+        var bO = document.getElementById('coins');
+        var dbRef = database.ref().child('money');
+
+        dbRef.on('value', snap => coins.innerText = snap.val());
+
+        document.getElementById('income').onclick = function() {
+            var currentCoins;
+            dbRef.once('value', function(snapshot) {
+                currentCoins = (snapshot.val());
+            });
+            currentCoins += 1;
+            database.ref().set({
+                'money': currentCoins
+            })
+        }
+
+        document.getElementById('foreignaid').onclick = function() {
+            var currentCoins;
+            dbRef.once('value', function(snapshot) {
+                currentCoins = (snapshot.val());
+            });
+            currentCoins += 2;
+            database.ref().set({
+                'money': currentCoins
+            })
+        }
+
+    </script>
+</body>

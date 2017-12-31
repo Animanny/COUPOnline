@@ -1,0 +1,6 @@
+{
+    "short_name": "COUP Online",
+    "name": "COUP Online",
+    "start_url": "index.html?launcher=true",
+    "gcm_sender_id": "103953800507"
+}

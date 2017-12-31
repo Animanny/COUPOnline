@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "coup-online",
+    "staging": "coup-online"
+  }
+}
